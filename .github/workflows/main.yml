@@ -89,7 +89,7 @@ jobs:
 
       - name: Replace image tag in deployment.yaml
         run: |
-          if [ ! -f ./deploy/deployment.yml ]; then
+          if [ ! -f yandex-cloud/mynginxrepo/devops-netology/project/mynginxrepo/deploy/deployment.yml ]; then
             echo "deployment.yml not found in the current directory"
             exit 1
           fi
