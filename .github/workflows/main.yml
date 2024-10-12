@@ -87,13 +87,13 @@ jobs:
           echo "Using version: $VERSION"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
-      - name: Replace image tag in deployment.yaml
+      - name: Replace image tag in deployment.yml
         run: |
-          if [ ! -f yandex-cloud/mynginxrepo/devops-netology/project/mynginxrepo/deploy/deployment.yml ]; then
+          if [ ! -f ./deploy/deployment.yml ]; then
             echo "deployment.yml not found in the current directory"
             exit 1
           fi
-          sed -i "s|image: rziankins/testing_dev_stend:.*|image: ${{ env.IMAGE_NAME }}:${{ env.TAG }}|" yandex-cloud/mynginxrepo/devops-netology/project/mynginxrepo/deploy/deployment.yml
+          sed -i "s|image: rziankins/testing_dev_stend:.*|image: ${{ env.IMAGE_NAME }}:${{ env.TAG }}|" ./deploy/deployment.yml
 
       - name: Create kubeconfig
         run: |
@@ -109,7 +109,7 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f yandex-cloud/mynginxrepo/devops-netology/project/mynginxrepo/deploy/deployment.yml
+          kubectl apply -f ./deploy/deployment.yml
           kubectl get daemonsets -n monitoring
           kubectl get pods -n monitoring
           kubectl describe daemonset myapp -n monitoring
