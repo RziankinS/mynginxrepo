@@ -11,7 +11,6 @@ variable "zone" {
 }
 
 variable "yandex_cloud_auth" {
-  default = yandex_cloud_auth
   sensitive = true
 }
 
