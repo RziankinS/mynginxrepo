@@ -11,13 +11,6 @@ variable "zone" {
 }
 
 variable "yandex_cloud_auth" {
+  default = "y0_AgAAAAByvTpdAATuwQAAAAEU_EjjAAAL_qV9q6xNI7H7govcyyUnMc1oyg"
   sensitive = true
-}
-
-locals {
-  yandex_cloud_auth = data.terraform_remote_state.example.outputs["yandex_cloud_auth"]
-}
-
-output "yandex_cloud_auth" {
-  value = local.yandex_cloud_auth
 }
