@@ -18,7 +18,7 @@ terraform {
   backend "remote" {
     organization = "Rziankin"
     workspaces {
-      name = "mynginxrepo"
+      name = "ws-dmRHJVQpT817shof"
     }
   }
 }
@@ -28,7 +28,7 @@ provider "random" {}
 data "terraform_remote_state" "example" {
   backend = "remote"
 
-  alias = "mynginxrepo"
+  alias = "ws-dmRHJVQpT817shof"
 }
 
 locals {
