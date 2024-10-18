@@ -11,6 +11,36 @@ variable "zone" {
 }
 
 variable "yandex_cloud_auth" {
-  default = "y0_AgAAAAByvTpdAATuwQAAAAEO5OVIAAA4qKML0qJD9JUFpfLt4_JGjkhA_w"
+  default = yandex_cloud_auth
   sensitive = true
+}
+
+terraform {
+  backend "remote" {
+    organization = "Rziankin"
+    workspaces {
+      name = "mynginxrepo"
+    }
+  }
+}
+
+provider "random" {}
+
+data "terraform_remote_state" "example" {
+  backend = "remote"
+
+  configuration = {
+    organization = "Rziankin"
+    workspaces = {
+      name = "mynginxrepo"
+    }
+  }
+}
+
+locals {
+  yandex_cloud_auth = data.terraform_remote_state.example.outputs["yandex_cloud_auth"]
+}
+
+output "yandex_cloud_auth" {
+  value = local.yandex_cloud_auth
 }
