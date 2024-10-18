@@ -14,23 +14,6 @@ variable "yandex_cloud_auth" {
   sensitive = true
 }
 
-terraform {
-  backend "remote" {
-    organization = "Rziankin"
-    workspaces {
-      name = "ws-dmRHJVQpT817shof"
-    }
-  }
-}
-
-provider "random" {}
-
-data "terraform_remote_state" "example" {
-  backend = "remote"
-
-  alias = "ws-dmRHJVQpT817shof"
-}
-
 locals {
   yandex_cloud_auth = data.terraform_remote_state.example.outputs["yandex_cloud_auth"]
 }
