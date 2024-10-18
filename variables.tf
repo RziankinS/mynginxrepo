@@ -10,7 +10,3 @@ variable "zone" {
   default = "ru-central1-a"  
 }
 
-variable "yandex_cloud_auth" {
-  default = ""
-  sensitive = true
-}
