@@ -28,12 +28,7 @@ provider "random" {}
 data "terraform_remote_state" "example" {
   backend = "remote"
 
-  configuration = {
-    organization = "Rziankin"
-    workspaces = {
-      name = "mynginxrepo"
-    }
-  }
+  alias = "mynginxrepo"
 }
 
 locals {
